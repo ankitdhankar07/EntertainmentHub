@@ -14,9 +14,21 @@ export default function MainNav() {
   const navigate = useNavigate();
 
   const [value, setValue] = React.useState(0);
-    useEffect(()=>{if(value===0){
+    useEffect(()=>{
+      if(value===0){
       navigate("/")
-    }},[value]);
+      }
+      if(value===1){
+        navigate("/movies")
+        }
+        if(value===2){
+          navigate("/series")
+          }
+          if(value===0){
+            navigate("/search")
+            }
+      
+  },[value]);
 
   return (
     <Box sx={{ width:'100%', position:'fixed' , bottom:0 , zIndex:100}}>
@@ -28,10 +40,10 @@ export default function MainNav() {
         }}
         sx={{background:'#2d313a'}}
       >
-        <BottomNavigationAction sx={{color:'white'}} label="Trending" icon={<WhatshotIcon />} onClick={()=>navigate("/trending")} />
-        <BottomNavigationAction sx={{color:'white'}} label="Movies" icon={<MovieIcon />} onClick={()=>navigate("/movies")} />
-        <BottomNavigationAction sx={{color:'white'}} label="Tv Series" icon={<TvIcon />} onClick={()=>navigate("/movies")}/>
-         <BottomNavigationAction sx={{color:'white'}} label="Search " icon={<SearchIcon />} onClick={()=>{navigate("/search")}}/>
+        <BottomNavigationAction sx={{color:'white'}} label="Trending" icon={<WhatshotIcon />}  />
+        <BottomNavigationAction sx={{color:'white'}} label="Movies" icon={<MovieIcon />}  />
+        <BottomNavigationAction sx={{color:'white'}} label="Tv Series" icon={<TvIcon />} />
+        <BottomNavigationAction sx={{color:'white'}} label="Search " icon={<SearchIcon />} />
       </BottomNavigation>
     </Box>
   );
