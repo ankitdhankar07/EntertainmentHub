@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SingleContent from "../../components/SingleContent/SingleContent";
-
+import './Trending.css';
 function Trending() {
   const [content, setContent] = useState([]);
-
+  
   const options = {
     method: "GET",
     url: "https://api.themoviedb.org/3/trending/all/day",
@@ -27,8 +27,7 @@ function Trending() {
 
   return (
     <div>
-      <span className="pageTitle">Trending</span>
-      <SingleContent />
+      <div className="pageTitle">Trending</div>
       <div className="trending">
         {content &&
           content.map((c) => (
