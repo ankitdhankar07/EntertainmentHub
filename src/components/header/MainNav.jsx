@@ -7,11 +7,16 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function MainNav() {
+  //using useNavigate to navigate to the page according to the link
+  const navigate = useNavigate();
+
   const [value, setValue] = React.useState(0);
-    useEffect(()=>{},[value]);
+    useEffect(()=>{if(value===0){
+      navigate("/")
+    }},[value]);
 
   return (
     <Box sx={{ width:'100%', position:'fixed' , bottom:0 , zIndex:100}}>
@@ -22,12 +27,11 @@ export default function MainNav() {
           setValue(newValue);
         }}
         sx={{background:'#2d313a'}}
-  >
-    <Link to="/movies">
-        <BottomNavigationAction sx={{color:'white'}} label="Trending" icon={<WhatshotIcon />} /></Link>
-        <BottomNavigationAction sx={{color:'white'}} label="Movies" icon={<MovieIcon />} />
-        <BottomNavigationAction sx={{color:'white'}} label="Tv Series" icon={<TvIcon />} />
-        <BottomNavigationAction sx={{color:'white'}} label="Search " icon={<SearchIcon />} />
+      >
+        <BottomNavigationAction sx={{color:'white'}} label="Trending" icon={<WhatshotIcon />} onClick={()=>navigate("/trending")} />
+        <BottomNavigationAction sx={{color:'white'}} label="Movies" icon={<MovieIcon />} onClick={()=>navigate("/movies")} />
+        <BottomNavigationAction sx={{color:'white'}} label="Tv Series" icon={<TvIcon />} onClick={()=>navigate("/movies")}/>
+         <BottomNavigationAction sx={{color:'white'}} label="Search " icon={<SearchIcon />} onClick={()=>{navigate("/search")}}/>
       </BottomNavigation>
     </Box>
   );
