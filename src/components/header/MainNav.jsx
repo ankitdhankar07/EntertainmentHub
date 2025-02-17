@@ -15,20 +15,11 @@ export default function MainNav() {
 
   const [value, setValue] = React.useState(0);
     useEffect(()=>{
-      if(value===0){
-      navigate("/")
-      }
-      if(value===1){
-        navigate("/movies")
-        }
-        if(value===2){
-          navigate("/series")
-          }
-          if(value===0){
-            navigate("/search")
-            }
-      
-  },[value]);
+      if(value===0) navigate("/");
+      if(value===1) navigate("/movies");
+      if(value===2) navigate("/series");    
+      if(value===3) navigate("/search")
+    },[value,navigate]);
 
   return (
     <Box sx={{ width:'100%', position:'fixed' , bottom:0 , zIndex:100}}>
