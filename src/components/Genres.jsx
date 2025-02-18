@@ -24,7 +24,7 @@ function Genres({
     const { data } = await axios.request(options);
     setGenres(data.genres);
   };
-  console.log(genres);
+  
   useEffect(() => {
     fetchGenres();
     return () => {
