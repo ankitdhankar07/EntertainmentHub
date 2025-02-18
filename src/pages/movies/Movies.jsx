@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Genres from "../../components/Genres";
 import CustomPagination from "../../components/Pagination/CustomPagination";
 import SingleContent from "../../components/SingleContent/SingleContent";
+import useGenre from "../../hooks/useGenre";
 
 function Movies() {
   const [content, setContent] = useState([]);
@@ -10,11 +11,16 @@ function Movies() {
   const [noOfPages, setNumOfPages] = useState();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genres, setGenres] = useState([]);
+  const genreForUrl = useGenre(selectedGenres);
 
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/trending/movie/day",
-    params: { language: "en-US", page: page },
+    url: "https://api.themoviedb.org/3/discover/movie",
+    params: {
+      language: "en-US",
+      page: "1",
+      with_genres: genreForUrl,
+    },
     headers: {
       accept: "application/json",
       Authorization:
@@ -30,7 +36,7 @@ function Movies() {
 
   useEffect(() => {
     fetchTrending();
-  }, [page]);
+  }, [page, genreForUrl]);
 
   return (
     <div>
@@ -40,7 +46,7 @@ function Movies() {
         selectedGenres={selectedGenres}
         genres={genres}
         setGenres={setGenres}
-        setSelectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
         setPage={setPage}
       />
       <div className="trending">

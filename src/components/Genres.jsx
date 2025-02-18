@@ -12,7 +12,7 @@ function Genres({
 }) {
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/genre/movie/list",
+    url: `https://api.themoviedb.org/3/genre/${type}/list`,
     params: { language: "en" },
     headers: {
       accept: "application/json",
@@ -49,15 +49,29 @@ function Genres({
 
   return (
     <div style={{ padding: "6px 0" }}>
-      {genres.map((genre) => (
-        <Chip
-          label={genre.name}
-          style={{ margin: "2.5px" }}
-          clickable
-          size="small"
-          key={genre.id}
-        />
-      ))}
+      {selectedGenres &&
+        selectedGenres.map((genre) => (
+          <Chip
+            label={genre.name}
+            style={{ margin: "2.5px" }}
+            clickable
+            size="small"
+            key={genre.id}
+            color="primary"
+            onDelete={() => handleRemove(genre)}
+          />
+        ))}
+      {genres &&
+        genres.map((genre) => (
+          <Chip
+            label={genre.name}
+            style={{ margin: "2.5px" }}
+            clickable
+            size="small"
+            key={genre.id}
+            onClick={() => handleAdd(genre)}
+          />
+        ))}
     </div>
   );
 }
