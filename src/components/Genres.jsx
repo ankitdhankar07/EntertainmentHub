@@ -1,3 +1,4 @@
+import { Chip } from "@mui/material";
 import axios from "axios";
 import React, { useEffect } from "react";
 
@@ -24,7 +25,7 @@ function Genres({
     const { data } = await axios.request(options);
     setGenres(data.genres);
   };
-  
+
   useEffect(() => {
     fetchGenres();
     return () => {
@@ -32,7 +33,9 @@ function Genres({
     };
   }, []);
 
-  return <div>Genres</div>;
+  return <div style = {{padding:"6px 0"}}>
+        {genres.map((genre)=>(<Chip/>))}
+  </div>;
 }
 
 export default Genres;
