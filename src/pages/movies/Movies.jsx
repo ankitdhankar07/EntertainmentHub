@@ -34,7 +34,7 @@ function Movies() {
 
   return (
     <div>
-      <div className="pageTitle">Trending</div>
+      <div className="pageTitle">Movies</div>
       <Genres
         type="movie"
         selectedGenres={selectedGenres}
